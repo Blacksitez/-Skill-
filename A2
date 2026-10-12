@@ -1,0 +1,67 @@
+import java.util.Scanner;
+
+public class Main {
+
+    // ค่าเฉลี่ยของคะแนน
+    static double average(int[] scores) {
+        long sum = 0;
+        for (int score : scores) {
+            sum += score;
+        }
+        return (double) sum / scores.length;
+    }
+
+    // คะแนนสูงสุด
+    static int maximum(int[] scores) {
+        int max = scores[0];
+        for (int score : scores) {
+            if (score > max) {
+                max = score;
+            }
+        }
+        return max;
+    }
+
+    // คะแนนต่ำสุด
+    static int minimum(int[] scores) {
+        int min = scores[0];
+        for (int score : scores) {
+            if (score < min) {
+                min = score;
+            }
+        }
+        return min;
+    }
+
+    // ระดับผลการเรียนของคะแนนหนึ่งค่า
+    static String grade(int score) {
+        if (score >= 80) {
+            return "Excellent";
+        } else if (score >= 60) {
+            return "Good";
+        } else if (score >= 50) {
+            return "Pass";
+        } else {
+            return "Fail";
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int[] scores = new int[n];
+        for (int i = 0; i < n; i++) {
+            scores[i] = sc.nextInt();
+        }
+
+        System.out.printf("Average: %.2f%n", average(scores));
+        System.out.println("Maximum: " + maximum(scores));
+        System.out.println("Minimum: " + minimum(scores));
+
+        // ถ้าโจทย์ต้องการแสดงระดับของแต่ละคน ให้เอาคอมเมนต์ออก
+        // for (int score : scores) {
+        //     System.out.println(score + " -> " + grade(score));
+        // }
+    }
+}
