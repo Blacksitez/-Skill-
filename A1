@@ -1,0 +1,34 @@
+import java.util.Scanner;
+
+public class Main {
+
+    // คำนวณ BMI จากน้ำหนัก (กก.) และส่วนสูง (เมตร)
+    static double calculateBmi(double weight, double height) {
+        return weight / (height * height);
+    }
+
+    // แปลงค่า BMI เป็นสถานะ
+    static String getStatus(double bmi) {
+        if (bmi < 18.5) {
+            return "Underweight";
+        } else if (bmi < 25.0) {
+            return "Normal";
+        } else if (bmi < 30.0) {
+            return "Overweight";
+        } else {
+            return "Obese";
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        double weight = sc.nextDouble();
+        double height = sc.nextDouble();
+
+        double bmi = calculateBmi(weight, height);
+
+        System.out.printf("BMI: %.2f%n", bmi);
+        System.out.println("Status: " + getStatus(bmi));
+    }
+}
