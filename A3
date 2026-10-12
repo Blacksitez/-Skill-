@@ -1,0 +1,39 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+
+    static final int INF = Integer.MAX_VALUE / 2;
+
+    // คืนจำนวนเหรียญน้อยที่สุดที่รวมได้ target บาท หรือ -1 ถ้าเป็นไปไม่ได้
+    // dp[i] = จำนวนเหรียญน้อยที่สุดที่รวมได้ i บาท
+    static int minCoins(int[] coins, int target) {
+        int[] dp = new int[target + 1];
+        Arrays.fill(dp, INF);
+        dp[0] = 0;
+
+        for (int amount = 1; amount <= target; amount++) {
+            for (int coin : coins) {
+                if (amount >= coin && dp[amount - coin] != INF) {
+                    dp[amount] = Math.min(dp[amount], dp[amount - coin] + 1);
+                }
+            }
+        }
+
+        return dp[target] == INF ? -1 : dp[target];
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int x = sc.nextInt();
+
+        int[] coins = new int[n];
+        for (int i = 0; i < n; i++) {
+            coins[i] = sc.nextInt();
+        }
+
+        System.out.println(minCoins(coins, x));
+    }
+}
